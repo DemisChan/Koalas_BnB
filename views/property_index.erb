@@ -14,11 +14,11 @@
 
       <br>
 
-      <h2> Price:  $<%= property.price%> </h2>
-      <h2> Address:  $<%= property.address%> </h2>
+      <h2> Price: $<%= property.price%> </h2>
+      <h2> Address: <%= property.address%> </h2>
 
       <p>
-        <a href="/properties/<%=property.id %>/edit" id="edit_property_<%=property.name%>"> 
+        <a href="/properties/<%=property.id %>/edit" id="edit_<%=property.name%>"> 
           <button>Edit</button>
         </a>
       </p>
