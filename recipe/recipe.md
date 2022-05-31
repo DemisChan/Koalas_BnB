@@ -3,6 +3,9 @@
 ## 1. Describe the Problem
 
 _Put or write the user stories here. Add any clarifying notes you might have._
+As a user I want to be able to post an advert of a house so others can contact me to rent it. 
+
+
 
 ## 2. Design the Interface
 
@@ -10,7 +13,9 @@ _This is the fun part! Use excalidraw.com or a similar tool to design some
 wireframes (rough sketches of the user interface). Include interactions and
 transitions between pages — those are the most critical part._
 
-![Diary design example](./diary_design.png)
+![Diary design example](./Design.png)
+
+
 
 ## 3. Design the Database
 
@@ -18,16 +23,25 @@ _Design the data tables that will store all of the information your application
 manages. Include the data types and examples of three rows. Consider use Google
 Sheets or [AsciiTable](https://ozh.github.io/ascii-tables/) to do this._
 
+
+
 ```plain
 # Example
 
-Table name: diary_entries
+Table name: houses
 
-| id (NUMBER) |  title (TEXT)   |     contents (TEXT)      |
-|-------------|-----------------|--------------------------|
-|           1 | What a nice day | Today was a great day... |
-|           2 | What a bad day  | Today was an awful da... |
-|           3 | What a cool day | Today was a cool day ... |
++=====+====================+=================+============================================+=======================+===============+
+| ID  |        Name        |     Address     |                Description                 |  Price per night ($)  |  availability |
++=====+====================+=================+============================================+=======================+===============+
+|  1  |  Brown house       |  34 Skin lane   |  A lovely two bes house with lots of room  |                   34  |  Yes          |
++-----+--------------------+-----------------+--------------------------------------------+-----------------------+---------------+
+|  2  |  Country Barn      |  604 Ash Drive  |  A spooky barn                             |                   55  |  No           |
++-----+--------------------+-----------------+--------------------------------------------+-----------------------+---------------+
+|  3  |  London Penthouse  |  596 Lit yard   |  Somewhere you can have a party            |                  105  |  Yes          |
++-----+--------------------+-----------------+--------------------------------------------+-----------------------+---------------+
+
+
+
 ```
 
 
@@ -80,6 +94,7 @@ _Create examples of user interactions and expectations._
 # View no entries
 visit "/properties"
 # User sees:Empty page with add property link.
+
 
 # Add an entry
 visit "/properties"
