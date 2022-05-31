@@ -30,6 +30,45 @@ Table name: diary_entries
 |           3 | What a cool day | Today was a cool day ... |
 ```
 
+
+
+
+```ruby
+# INDEX
+# Request: GET /properties
+
+
+# CREATE
+# POST /properties
+# With data: { Name: , Address: , Description: , Price:, Availability}
+
+
+# READ
+# GET /properties/:index
+
+
+# UPDATE
+# PATCH /properties/:index
+# With data: { Name: , Address: , Description: , Price:, Availability}
+
+
+# DELETE
+# DELETE /properties/:index
+
+
+```
+
+> Remember:
+
+> GET: Getting a single item or a list of items
+
+> POST: Adding an item
+
+> PATCH: Updating an item
+
+> DELETE: Deleting an item
+
+
 ## 4. Create Examples of User Interactions
 
 _Create examples of user interactions and expectations._
@@ -39,12 +78,12 @@ _Create examples of user interactions and expectations._
 # code here, but at the start it's OK if it's just English or made up code.
 
 # View no entries
-visit "/bnb"
-# User sees:Empty page with add house link.
+visit "/properties"
+# User sees:Empty page with add property link.
 
 # Add an entry
-visit "/bnb"
-click link "Add house"
+visit "/properties"
+click link "Add property"
 enter "Villa Rainbow" into "Name" field
 enter "Paphos, Cyprus" into "Address" field
 enter "Beautiful house on the beach" into "Description" field
@@ -53,7 +92,7 @@ enter "Yes/No" into "Availability" field
 
 
 click button "Post"
-# User sees in the house list:
+# User sees in the property list:
 # Name: Villa Rainbow
 # Address: Paphos, Cyprus
 # Desciption: Beautiful house on the beach
@@ -62,22 +101,22 @@ click button "Post"
 
 
 # Multiple entries
-visit "/bnb"
-click link "Add house"
+visit "/properties"
+click link "Add property"
 enter "Villa Rainbow" into "Name" field
 enter "Paphos, Cyprus" into "Address" field
 enter "Beautiful house on the beach" into "Description" field
 enter "£80" into "Price" field
 enter "Yes/No" into "Availability" field
 click button "Post"
-click link "Add house"
+click link "Add property"
 enter "Villa Rainbow 2" into "Name" field
 enter "Limassol, Cyprus" into "Address" field
 enter "Beautiful house in the woods" into "Description" field
 enter "£90" into "Price" field
 enter "Yes/No" into "Availability" field
 click button "Post"
-# User sees in the house list:
+# User sees in the property list:
 # Name: Villa Rainbow
 # Address: Paphos, Cyprus
 # Desciption: Beautiful house on the beach
