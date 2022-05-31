@@ -1,0 +1,32 @@
+<h1>Edit Property</h1>
+
+<form action="/properties/<%= property.id %>" method="POST">
+
+  <input type="hidden" name="_method" value="PATCH">
+
+  <p>
+    <label for="name">Name</label>
+    <br>
+    <input type="text" id="name" name="name" value="<%= property.name %>">
+  </p>
+
+  <p>
+    <label for="address">Address</label>
+    <br>
+    <input type="text" id="address" name="address" value="<%= property.address %>">
+  </p>
+
+  <p>
+    <label for="price">Price</label>
+    <br>
+    <input type="integer" id="price" name="price" value="<%= property.price %>">
+  </p>
+
+  <p>
+    <label for="description">Description</label>
+    <br>
+    <input type="text" id="description" name="description" value="<%= property.description %>">
+  </p>
+
+  <input type="submit" value="Update property">
+</form>
