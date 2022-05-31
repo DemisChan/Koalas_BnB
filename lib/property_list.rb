@@ -15,11 +15,11 @@ class PropertyList
     return result[0]["id"]
   end
 
-  def remove(index) #index is an integer
-    #deletes property at specified index
+  def remove(index)
+    @database.run("DELETE FROM properties WHERE id = $1;", [index])
   end
 
-  def update(index, name, location, address, price, description)
+  def update(index, name, address, price, description)
     #updates whichever field is required
   end
 

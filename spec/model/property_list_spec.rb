@@ -21,15 +21,44 @@ RSpec.describe PropertyList do
       "Rainbow Lodge",
       "6 Rue du Gue, Rueil-Malmaison, France",
       60,
-      "Beachfront property"
+      "Suburban property"
     ))
 
     property = property_list.list
-
     expect(property.length).to eq 1
     expect(property[0].name).to eq "Rainbow Lodge"
     expect(property[0].address).to eq "6 Rue du Gue, Rueil-Malmaison, France"
     expect(property[0].price).to eq "60"
-    expect(property[0].description).to eq "Beachfront property"
+    expect(property[0].description).to eq "Suburban property"
+  end
+
+  it "removes properties" do
+    database = empty_and_return_database
+    property_list = PropertyList.new(database)
+    rainbow = property_list.add(Property.new(
+      "Rainbow Lodge",
+      "6 Rue du Gue, Rueil-Malmaison, France",
+      60,
+      "Suburban property"
+    ))
+    sunshine = property_list.add(Property.new(
+      "Sunshine Cottage",
+      "7 The Promenade, Porthmadog, Wales",
+      50,
+      "Beachfront property"
+    ))
+    honeysuckle = property_list.add(Property.new(
+      "Honeysuckle Bungalow",
+      "72 Stewart Place, Ware, England",
+      90,
+      "Brilliant views"
+    ))
+
+    property_list.remove(sunshine)
+
+    properties = property_list.list
+    expect(properties.length).to eq 2
+    expect(properties[0].name).to eq "Rainbow Lodge"
+    expect(properties[1].name).to eq "Honeysuckle Bungalow"
   end
 end
