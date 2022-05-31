@@ -88,8 +88,56 @@ RSpec.describe "Properties Feature (Example)", type: :feature do
     expect(page).to have_content "London, england"
     expect(page).to have_content "shite house in the sea"
     expect(page).to have_content 120
+  end
 
 
+  it "adds properties and edits one" do
+
+    visit "/properties"
+    click_link "Add Property"
+    fill_in "Name", with: "Villa Rainbow"
+    fill_in "Address", with: "Paphos, Cyprus"
+    fill_in "Description", with: "Beautiful house on the beach"
+    fill_in "Price", with: 80
+    click_button "Add Property"
+
+    click_link "Add Property"
+    fill_in "Name", with: "Villa Rainbow 2"
+    fill_in "Address", with: "Limassol, Cyprus"
+    fill_in "Description", with: "Beautiful house in the woods"
+    fill_in "Price", with: 90
+    click_button "Add Property"
+
+    click_link "Add Property"
+    fill_in "Name", with: "Villa Rainbow 3"
+    fill_in "Address", with: "London, england"
+    fill_in "Description", with: "shite house in the sea"
+    fill_in "Price", with: 120
+    click_button "Add Property"
+
+    click_link "edit_Villa Rainbow 2"
+    fill_in "Name", with: "Villa Rainbow 4"
+    fill_in "Address", with: "Manchester, Wales"
+    fill_in "Description", with: "live house in the sky"
+    fill_in "Price", with: 150
+    click_button "Add Property"
+    
+    expect(page).to have_content "Villa Rainbow"
+    expect(page).to have_content "Paphos, Cyprus"
+    expect(page).to have_content "Beautiful house on the beach"
+    expect(page).to have_content 80
+    expect(page).not_to have_content "Villa Rainbow 2"
+    expect(page).not_to have_content "Limassol, Cyprus"
+    expect(page).not_to have_content "Beautiful house in the woods"
+    expect(page).not_to have_content 90
+    expect(page).to have_content "Villa Rainbow 4"
+    expect(page).to have_content "Manchester, Wales"
+    expect(page).to have_content "live house in the sky"
+    expect(page).to have_content 150
+    expect(page).to have_content "Villa Rainbow 3"
+    expect(page).to have_content "London, england"
+    expect(page).to have_content "shite house in the sea"
+    expect(page).to have_content 120
   end
 
 end
