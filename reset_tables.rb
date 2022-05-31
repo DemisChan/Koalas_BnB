@@ -6,12 +6,17 @@ require "database_connection"
 # database tables are re-created.
 
 def reset_tables(db)
-  db.run("DROP TABLE IF EXISTS animals;")
-  db.run("CREATE TABLE animals (id SERIAL PRIMARY KEY, species TEXT NOT NULL);")
 
-  db.run("DROP TABLE IF EXISTS lostcats;")
-  db.run("CREATE TABLE lostcats (id SERIAL PRIMARY KEY, name TEXT NOT NULL, 
-    breed TEXT NOT NULL, tel VARCHAR);")
+  db.run("DROP TABLE IF EXISTS properties;")
+  db.run("CREATE TABLE properties 
+    (id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL,
+    description TEXT NOT NULL,
+    price INEGER NOT NULL,
+    availability BULLION NOT NULL);"
+  )
+
 end
 
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
