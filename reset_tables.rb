@@ -12,9 +12,8 @@ def reset_tables(db)
     (id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     address TEXT NOT NULL,
-    description TEXT NOT NULL,
     price INTEGER NOT NULL,
-    availability BOOLEAN NOT NULL);"
+    description TEXT NOT NULL);"
   )
 
 end

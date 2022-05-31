@@ -1,19 +1,14 @@
 class Property
-  def initialize(name, location, address, price, description, id = nil)
+  def initialize( id = nil, name, address, price, description)
+    @id = id
     @name = name
-    @location = location
     @address = address
     @price = price
     @description = description
-    @id = id
   end
 
   def name
     return @name
-  end
-  
-  def location
-    return @location
   end
 
   def address

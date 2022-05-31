@@ -9,8 +9,10 @@ class PropertyList
     end
   end
 
-  def add(property) #property is an entity of Property class
-    #adds a new property to PropertyList
+  def add(property)
+    result = @database.run("INSERT INTO properties (name, address, price, description) VALUES ($1, $2, $3, $4) RETURNING id;",
+    [property.name, property.address, property.price, property.description])
+    return result[0]["id"]
   end
 
   def remove(index) #index is an integer
@@ -28,6 +30,12 @@ class PropertyList
   private
 
   def row_to_object(row)
-    #returns the full advert
+    return Property.new(
+      row["id"],
+      row["name"],
+      row["address"],
+      row["price"],
+      row["description"]
+    )
   end
 end
