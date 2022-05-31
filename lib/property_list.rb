@@ -20,11 +20,13 @@ class PropertyList
   end
 
   def update(index, name, address, price, description)
-    #updates whichever field is required
+    @database.run("UPDATE properties SET name = $2, address = $3, price = $4, description = $5 WHERE id = $1;",
+    [index, name, address, price, description])
   end
 
-  def get(index) #index is an integer
-    #returns the property at the specified index
+  def get(index)
+    result = @database.run("SELECT * FROM properties WHERE id = $1;", [index])
+    return row_to_object(result[0])
   end
   
   private
