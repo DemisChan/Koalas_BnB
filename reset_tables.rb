@@ -13,8 +13,8 @@ def reset_tables(db)
     name TEXT NOT NULL,
     address TEXT NOT NULL,
     description TEXT NOT NULL,
-    price INEGER NOT NULL,
-    availability BULLION NOT NULL);"
+    price INTEGER NOT NULL,
+    availability BOOLEAN NOT NULL);"
   )
 
 end
