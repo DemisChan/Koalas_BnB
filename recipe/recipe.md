@@ -87,7 +87,7 @@ click button "Post"
 
 ```ruby
 
-Class PropertyList
+class PropertyList
    def initialize(database)
    end
 
@@ -118,7 +118,7 @@ Class PropertyList
    end
 end
 
-Class Property
+class Property
    def initialize(name, location, address, price, description,  id = 0)
    end
 
