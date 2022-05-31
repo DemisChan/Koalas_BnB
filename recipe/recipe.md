@@ -83,6 +83,72 @@ click button "Post"
 # I had a very nice day it's true.
 ```
 
+## 5. Class structure
+
+```ruby
+
+Class PropertyList
+   def initialize(database)
+   end
+
+   def list
+      #returns all properties in database
+   end
+
+   def add(property) #property is an entity of Property class
+      #adds a new property to PropertyList
+   end
+
+   def remove(index) #index is an integer
+      #deletes property at specified index
+   end
+
+   def update(index, name, location, address, price, description)
+      #updates whichever field is required
+   end
+
+   def get(index) #index is an integer
+      #returns the property at the specified index
+   end
+   
+   private
+
+   def row_to_object(row)
+      #returns the full advert
+   end
+end
+
+Class Property
+   def initialize(name, location, address, price, description,  id = 0)
+   end
+
+   def name
+      #returns name
+   end
+   
+   def location
+      #returns location
+   end
+
+   def address
+      #returns address
+   end
+
+   def price
+      #returns price
+   end
+
+   def description
+      #returns description
+   end
+
+   def id
+      #returns id
+   end
+end
+
+```
+
 ## 6. Test-Drive the Behaviour
 
 _Follow this cycle:_
