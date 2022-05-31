@@ -44,7 +44,7 @@ class WebApplicationServer < Sinatra::Base
   end
 
   get '/properties/new' do
-    erb :properties_new
+    erb :property_new
   end
 
   post '/properties' do
