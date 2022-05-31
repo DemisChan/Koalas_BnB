@@ -5,8 +5,8 @@ require 'sinatra/reloader'
 
 # You will want to require your data model class here
 require "database_connection"
-require "animals_table"
-require "animal_entity"
+require "property_list"
+require "property"
 
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
@@ -28,8 +28,8 @@ class WebApplicationServer < Sinatra::Base
     $global = { db: db }
   end
 
-  def animals_table
-    $global[:animals_table] ||= AnimalsTable.new($global[:db])
+  def property_table
+    $global[:property_table] ||= PropertyList.new($global[:db])
   end
 
   # Start your server using `rackup`.
@@ -39,36 +39,36 @@ class WebApplicationServer < Sinatra::Base
 
   # EXAMPLE ROUTES
 
-  get '/animals' do
-    erb :animals_index, locals: { animals: animals_table.list }
+  get '/properties' do
+    erb :property_index, locals: { properties: property_table.list }
   end
 
-  get '/animals/new' do
-    erb :animals_new
+  get '/properties/new' do
+    erb :properties_new
   end
 
-  post '/animals' do
-    animal = AnimalEntity.new(params[:species])
-    animals_table.add(animal)
-    redirect '/animals'
+  post '/properties' do
+    property = Property.new(params[:name],params[:address],params[:price],params[:description])
+    property_table.add(property)
+    redirect '/properties'
   end
 
-  delete '/animals/:index' do
-    animals_table.remove(params[:index].to_i)
-    redirect '/animals'
+  delete '/properties/:index' do
+    property_table.remove(params[:index].to_i)
+    redirect '/properties'
   end
 
-  get '/animals/:index/edit' do
-    animal_index = params[:index].to_i
-    erb :animals_edit, locals: {
-      index: animal_index,
-      animal: animals_table.get(animal_index)
-    }
-  end
+  # get '/animals/:index/edit' do
+  #   animal_index = params[:index].to_i
+  #   erb :animals_edit, locals: {
+  #     index: animal_index,
+  #     animal: animals_table.get(animal_index)
+  #   }
+  # end
 
-  patch '/animals/:index' do
-    animal_index = params[:index].to_i
-    animals_table.update(animal_index, params[:species])
-    redirect '/animals'
-  end
+  # patch '/animals/:index' do
+  #   animal_index = params[:index].to_i
+  #   animals_table.update(animal_index, params[:species])
+  #   redirect '/animals'
+  # end
 end
