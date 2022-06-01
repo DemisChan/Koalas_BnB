@@ -1,5 +1,6 @@
 require "property"
 
+
 RSpec.describe Property do
   it "constructs without an ID" do
     property = Property.new(
