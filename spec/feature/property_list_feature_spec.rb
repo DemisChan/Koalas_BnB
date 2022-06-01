@@ -120,7 +120,7 @@ RSpec.describe "Properties Feature (Example)", type: :feature do
     fill_in "Address", with: "Manchester, Wales"
     fill_in "Description", with: "live house in the sky"
     fill_in "Price", with: 150
-    click_button "Add Property"
+    click_button "Update property"
     
     expect(page).to have_content "Villa Rainbow"
     expect(page).to have_content "Paphos, Cyprus"
