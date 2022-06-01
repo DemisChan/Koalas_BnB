@@ -58,17 +58,17 @@ class WebApplicationServer < Sinatra::Base
     redirect '/properties'
   end
 
-  # get '/animals/:index/edit' do
-  #   animal_index = params[:index].to_i
-  #   erb :animals_edit, locals: {
-  #     index: animal_index,
-  #     animal: animals_table.get(animal_index)
-  #   }
-  # end
+  get '/properties/:index/edit' do
+    properties_index = params[:index].to_i
+    erb :property_edit, locals: {
+      index: properties_index,
+      property: property_table.get(properties_index)
+    }
+  end
 
-  # patch '/animals/:index' do
-  #   animal_index = params[:index].to_i
-  #   animals_table.update(animal_index, params[:species])
-  #   redirect '/animals'
-  # end
+  patch '/properties/:index' do
+    properties_index = params[:index].to_i
+    property_table.update(properties_index, params[:name], params[:address], params[:price], params[:description])
+    redirect '/properties'
+  end
 end
