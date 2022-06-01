@@ -23,7 +23,7 @@ class Booking
     return @prop_id
   end
 
-  def id
+  def book_id
     return @id
   end
 end
