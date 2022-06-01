@@ -5,21 +5,41 @@ require "database_connection"
 # of this file, you should rerun `ruby reset_tables.rb` to ensure that your
 # database tables are re-created.
 
-def reset_tables(db)
+def reset_prop_table(prop_db)
 
-  db.run("DROP TABLE IF EXISTS properties;")
-  db.run("CREATE TABLE properties 
+  prop_db.run("DROP TABLE IF EXISTS properties;")
+  prop_db.run("CREATE TABLE properties 
     (id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     address TEXT NOT NULL,
     price INTEGER NOT NULL,
     description TEXT NOT NULL);"
   )
+end
+
+  # DATE format is YYYY-MM-DD, see https://www.w3schools.com/sql/sql_datatypes.asp for reference
+def reset_book_table(book_db)
+
+  book_db.run("DROP TABLE IF EXISTS bookings;")
+  book_db.run("CREATE TABLE bookings
+    (id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    property_id TEXT NOT NULL);"
+  )
 
 end
 
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
-reset_tables(dev_db)
+reset_prop_table(dev_db)
 
 test_db = DatabaseConnection.new("localhost", "web_application_test")
-reset_tables(test_db)
+reset_prop_table(test_db)
+
+dev_db = DatabaseConnection.new("localhost", "web_application_dev")
+reset_book_table(dev_db)
+
+test_db = DatabaseConnection.new("localhost", "web_application_test")
+reset_book_table(test_db)
+
