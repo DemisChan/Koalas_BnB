@@ -5,8 +5,15 @@ require 'sinatra/reloader'
 
 # You will want to require your data model class here
 require "database_connection"
+<<<<<<< Updated upstream
 require "animals_table"
 require "animal_entity"
+=======
+require "property_list"
+require "property"
+require "user"
+require "user_list"
+>>>>>>> Stashed changes
 
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
@@ -39,8 +46,28 @@ class WebApplicationServer < Sinatra::Base
 
   # EXAMPLE ROUTES
 
+<<<<<<< Updated upstream
   get '/animals' do
     erb :animals_index, locals: { animals: animals_table.list }
+=======
+  get '/registrations/new' do
+    erb(:user_register)
+  end
+
+  post '/registrations' do
+    user = User.new(username: params[:username])
+    user.password = params[:password]
+    if users_table.add(user)
+      session[:user_id] = user.id
+      redirect('/properties')
+    else
+      redirect('/registrations/new')
+    end
+  end
+
+  get '/properties' do
+    erb :property_index, locals: { properties: property_table.list }
+>>>>>>> Stashed changes
   end
 
   get '/animals/new' do
@@ -66,9 +93,17 @@ class WebApplicationServer < Sinatra::Base
     }
   end
 
+<<<<<<< Updated upstream
   patch '/animals/:index' do
     animal_index = params[:index].to_i
     animals_table.update(animal_index, params[:species])
     redirect '/animals'
+=======
+  patch '/properties/:index' do
+    properties_index = params[:index].to_i
+    property_table.update(
+    properties_index, params[:name], params[:address], params[:price], params[:description])
+    redirect '/properties'
+>>>>>>> Stashed changes
   end
 end

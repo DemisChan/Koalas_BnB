@@ -1,11 +1,11 @@
 class Booking
-	def initialize(username, start_date, end_date, prop_id, id = nil)
+  def initialize(username, start_date, end_date, prop_id, id = nil)
     @username = username
     @start_date = start_date
     @end_date = end_date
     @prop_id = prop_id
     @id = id
-	end
+  end
 
   def username
     return @username
