@@ -31,6 +31,17 @@ def reset_book_table(book_db)
 
 end
 
+def reset_user_table(users_db)
+
+  users_db.run("DROP TABLE IF EXISTS users;")
+  users_db.run("CREATE TABLE users 
+    (id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL);"
+  )
+end
+
+
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
 reset_prop_table(dev_db)
 
@@ -42,4 +53,10 @@ reset_book_table(dev_db)
 
 test_db = DatabaseConnection.new("localhost", "web_application_test")
 reset_book_table(test_db)
+
+dev_db = DatabaseConnection.new("localhost", "web_application_dev")
+reset_user_table(dev_db)
+
+test_db = DatabaseConnection.new("localhost", "web_application_test")
+reset_user_table(test_db)
 

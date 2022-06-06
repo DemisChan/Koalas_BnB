@@ -1,9 +1,20 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (7.0.3)
+      activesupport (= 7.0.3)
+    activerecord (7.0.3)
+      activemodel (= 7.0.3)
+      activesupport (= 7.0.3)
+    activesupport (7.0.3)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
+    bcrypt (3.1.18)
     capybara (3.37.1)
       addressable
       matrix
@@ -13,9 +24,17 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    concurrent-ruby (1.1.10)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     diff-lcs (1.5.0)
+    i18n (1.10.0)
+      concurrent-ruby (~> 1.0)
     matrix (0.4.2)
     mini_mime (1.1.2)
+    minitest (5.15.0)
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -78,6 +97,8 @@ GEM
       sinatra (= 2.2.0)
       tilt (~> 2.0)
     tilt (2.0.10)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -88,7 +109,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt
   capybara (~> 3.37)
+  database_cleaner-active_record (~> 2.0)
   pg (~> 1.3)
   puma (~> 5.6)
   rack-test (~> 1.1)

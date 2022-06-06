@@ -23,3 +23,6 @@ gem "capybara", "~> 3.37", :group => :test
 gem "pg", "~> 1.3"
 
 gem "rainbow", "~> 3.1"
+
+gem "bcrypt"
+gem "database_cleaner-active_record", "~> 2.0"
