@@ -31,8 +31,6 @@ def reset_book_table(book_db)
 
 end
 
-<<<<<<< Updated upstream
-=======
 def reset_user_table(users_db)
 
   users_db.run("DROP TABLE IF EXISTS users;")
@@ -47,7 +45,6 @@ def reset_user_table(users_db)
   )
 end
 
->>>>>>> Stashed changes
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
 reset_prop_table(dev_db)
 
@@ -60,11 +57,8 @@ reset_book_table(dev_db)
 test_db = DatabaseConnection.new("localhost", "web_application_test")
 reset_book_table(test_db)
 
-<<<<<<< Updated upstream
-=======
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
 reset_user_table(dev_db)
 
 test_db = DatabaseConnection.new("localhost", "web_application_test")
 reset_user_table(test_db)
->>>>>>> Stashed changes

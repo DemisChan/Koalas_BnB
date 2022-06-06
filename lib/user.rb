@@ -33,8 +33,8 @@ class User
     return @last_name
   end
 
+
   def id
     return @id
   end
-
 end

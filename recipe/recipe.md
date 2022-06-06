@@ -44,6 +44,45 @@ Table name: houses
 
 ```
 
+
+
+
+```ruby
+# INDEX
+# Request: GET /properties
+
+
+# CREATE
+# POST /properties
+# With data: { Name: , Address: , Description: , Price:, Availability}
+
+
+# READ
+# GET /properties/:index
+
+
+# UPDATE
+# PATCH /properties/:index
+# With data: { Name: , Address: , Description: , Price:, Availability}
+
+
+# DELETE
+# DELETE /properties/:index
+
+
+```
+
+> Remember:
+
+> GET: Getting a single item or a list of items
+
+> POST: Adding an item
+
+> PATCH: Updating an item
+
+> DELETE: Deleting an item
+
+
 ## 4. Create Examples of User Interactions
 
 _Create examples of user interactions and expectations._
@@ -53,34 +92,57 @@ _Create examples of user interactions and expectations._
 # code here, but at the start it's OK if it's just English or made up code.
 
 # View no entries
-visit "/houses"
-# User sees: You have no diary entries.
+visit "/properties"
+# User sees:Empty page with add property link.
+
 
 # Add an entry
-visit "/diary"
-click link "Add Entry"
-enter "A beautiful day" into "Title" field
-enter "I had a very nice day it's true." into "Contents" field
+visit "/properties"
+click link "Add property"
+enter "Villa Rainbow" into "Name" field
+enter "Paphos, Cyprus" into "Address" field
+enter "Beautiful house on the beach" into "Description" field
+enter "£80" into "Price" field
+enter "Yes/No" into "Availability" field
+
+
 click button "Post"
-# User sees in the diary list:
-# A beautiful day
-# I had a very nice day it's true.
+# User sees in the property list:
+# Name: Villa Rainbow
+# Address: Paphos, Cyprus
+# Desciption: Beautiful house on the beach
+# Price: £80
+# Availability: Yes/No
+
 
 # Multiple entries
-visit "/diary"
-click link "Add Entry"
-enter "A beautiful day" into "Title" field
-enter "I had a very nice day it's true." into "Contents" field
+visit "/properties"
+click link "Add property"
+enter "Villa Rainbow" into "Name" field
+enter "Paphos, Cyprus" into "Address" field
+enter "Beautiful house on the beach" into "Description" field
+enter "£80" into "Price" field
+enter "Yes/No" into "Availability" field
 click button "Post"
-click link "Add Entry"
-enter "A bad day" into "Title" field
-enter "I had a very bad day." into "Contents" field
+click link "Add property"
+enter "Villa Rainbow 2" into "Name" field
+enter "Limassol, Cyprus" into "Address" field
+enter "Beautiful house in the woods" into "Description" field
+enter "£90" into "Price" field
+enter "Yes/No" into "Availability" field
 click button "Post"
-# User sees in the diary list:
-# A bad day
-# I had a very bad day.
-# A beautiful day
-# I had a very nice day it's true.
+# User sees in the property list:
+# Name: Villa Rainbow
+# Address: Paphos, Cyprus
+# Desciption: Beautiful house on the beach
+# Price: £80
+# Availability: Yes/No
+# User sees in the house list:
+# Name: Villa Rainbow 2
+# Address: Limassol, Cyprus
+# Desciption: Beautiful house in the woods
+# Price: £90
+# Availability: Yes/No
 ```
 
 ## 5. Class structure

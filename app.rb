@@ -5,19 +5,17 @@ require 'sinatra/reloader'
 
 # You will want to require your data model class here
 require "database_connection"
-<<<<<<< Updated upstream
-require "animals_table"
-require "animal_entity"
-=======
 require "property_list"
 require "property"
 require "user"
 require "user_list"
->>>>>>> Stashed changes
+
 
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
   use Rack::MethodOverride
+  
+  enable :sessions
 
   configure :development do
     # In development mode (which you will be running) this enables the tool
@@ -35,8 +33,12 @@ class WebApplicationServer < Sinatra::Base
     $global = { db: db }
   end
 
-  def animals_table
-    $global[:animals_table] ||= AnimalsTable.new($global[:db])
+  def property_table
+    $global[:property_table] ||= PropertyList.new($global[:db])
+  end
+
+  def users_table
+    $global[:users_table] ||= UsersTable.new($global[:db])
   end
 
   # Start your server using `rackup`.
@@ -46,10 +48,6 @@ class WebApplicationServer < Sinatra::Base
 
   # EXAMPLE ROUTES
 
-<<<<<<< Updated upstream
-  get '/animals' do
-    erb :animals_index, locals: { animals: animals_table.list }
-=======
   get '/registrations/new' do
     erb(:user_register)
   end
@@ -67,43 +65,41 @@ class WebApplicationServer < Sinatra::Base
 
   get '/properties' do
     erb :property_index, locals: { properties: property_table.list }
->>>>>>> Stashed changes
   end
 
-  get '/animals/new' do
-    erb :animals_new
+  get '/properties/new' do
+    erb :property_new
   end
 
-  post '/animals' do
-    animal = AnimalEntity.new(params[:species])
-    animals_table.add(animal)
-    redirect '/animals'
+  post '/properties' do
+    property = Property.new(params[:name],params[:address],params[:price],params[:description])
+    property_table.add(property)
+    redirect '/properties'
   end
 
-  delete '/animals/:index' do
-    animals_table.remove(params[:index].to_i)
-    redirect '/animals'
+  delete '/properties/:index' do
+    property_table.remove(params[:index].to_i)
+    redirect '/properties'
   end
 
-  get '/animals/:index/edit' do
-    animal_index = params[:index].to_i
-    erb :animals_edit, locals: {
-      index: animal_index,
-      animal: animals_table.get(animal_index)
+  get '/properties/:index/edit' do
+    properties_index = params[:index].to_i
+    erb :property_edit, locals: {
+      index: properties_index,
+      property: property_table.get(properties_index)
     }
   end
 
-<<<<<<< Updated upstream
-  patch '/animals/:index' do
-    animal_index = params[:index].to_i
-    animals_table.update(animal_index, params[:species])
-    redirect '/animals'
-=======
   patch '/properties/:index' do
     properties_index = params[:index].to_i
     property_table.update(
     properties_index, params[:name], params[:address], params[:price], params[:description])
     redirect '/properties'
->>>>>>> Stashed changes
+  end
+
+  patch '/properties/:index' do
+    properties_index = params[:index].to_i
+    property_table.update(properties_index, params[:name], params[:address], params[:price], params[:description])
+    redirect '/properties'
   end
 end

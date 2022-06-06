@@ -1,0 +1,37 @@
+<h1> Makers BnB </h1>
+<h2> live laugh love </h2>
+
+<%if properties.empty?%>
+  There is no properties in your area
+<%else%>
+
+  <%properties.each do |property|%>
+
+    <article>
+
+      <h1><%= property.name%></h1>
+      <h3><%= property.description%></h3>
+
+      <br>
+
+      <h2> Price: $<%= property.price%> </h2>
+      <h2> Address: <%= property.address%> </h2>
+
+      <p>
+        <a href="/properties/<%=property.id %>/edit" id="edit_<%=property.name%>"> 
+          <button>Edit</button>
+        </a>
+      </p>
+
+      <form action="/properties/<%= property.id%>" method="POST">
+        <input type="hidden" name="_method" value="DELETE" >
+        <button id="delete_<%=property.name%>">Delete</button>
+      </form>
+    
+    </article>
+
+  <%end%>
+
+<%end%>
+
+<a href="/properties/new">Add Property</a>

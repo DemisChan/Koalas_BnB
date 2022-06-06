@@ -31,10 +31,12 @@ RSpec.describe UserList do
     expect(user.length).to eq 1
     expect(user[0].username).to eq "Demis"
     expect(user[0].password).to eq "123Demis"
+
     expect(user[0].email).to eq "demis@gmail.com"
     expect(user[0].number).to eq "07123456789"
     expect(user[0].first_name).to eq "Demis"
     expect(user[0].last_name).to eq "Lavrentidis"
+
   end
 
   it "removes the user" do
@@ -47,8 +49,8 @@ RSpec.describe UserList do
       "demis@gmail.com",
       "07123456789",
       "Demis",
-      "Lavrentidis")
-    )
+      "Lavrentidis"
+    ))
 
     ana = user_list.add(User.new(
       "Ana",
@@ -56,8 +58,8 @@ RSpec.describe UserList do
       "ana@gmail.com",
       "07987654321",
       "Ana",
-      "Anton")
-    )
+      "Anton"
+    ))
 
     emma = user_list.add(User.new( 
       "Emma",
@@ -65,8 +67,8 @@ RSpec.describe UserList do
       "emma@gmail.com",
       "07123654789",
       "Emma",
-      "Samuel")
-    )
+      "Samuel"
+    ))
 
     user_list.remove(ana)
 
@@ -78,7 +80,6 @@ RSpec.describe UserList do
     expect(users[0].number).to eq "07123456789"
     expect(users[0].first_name).to eq "Demis"
     expect(users[0].last_name).to eq "Lavrentidis"
-
     expect(users[1].username).to eq "Emma"
     expect(users[1].password).to eq "123Emma"
     expect(users[1].email).to eq "emma@gmail.com"
@@ -97,8 +98,8 @@ RSpec.describe UserList do
       "demis@gmail.com",
       "07123456789",
       "Demis",
-      "Lavrentidis")
-    )
+      "Lavrentidis"
+    ))
 
     ana = user_list.add(User.new(
       "Ana",
@@ -160,8 +161,8 @@ RSpec.describe UserList do
       "demis@gmail.com",
       "07123456789",
       "Demis",
-      "Lavrentidis")
-    )
+      "Lavrentidis"
+    ))
 
     ana = user_list.add(User.new(
       "Ana",

@@ -1,21 +1,20 @@
 require "helpers/database_helpers"
 
-RSpec.describe "properties list Feature (Example)", type: :feature do
+RSpec.describe "Properties Feature (Example)", type: :feature do
   before(:each) do
     DatabaseHelpers.clear_table("properties")
   end
 
   it "starts with an empty list of properties" do
     visit "/properties"
-<<<<<<< Updated upstream
     expect(page).to have_content "There are no properties."
-=======
     expect(page).to have_content "There is no properties in your area"
   end
 
   it "add an entry" do
     visit "/properties"
     click_link "Add Property"
+
     fill_in "Name", with: "Villa Rainbow " 
     fill_in "Address", with: "Paphos, Cyprus" 
     fill_in "Description", with: "Beautiful house on the beach" 
@@ -31,6 +30,7 @@ RSpec.describe "properties list Feature (Example)", type: :feature do
   it "adds multiple entries" do
     visit "/properties"
     click_link "Add Property"
+    
     fill_in "Name", with: "Villa Rainbow"
     fill_in "Address", with: "Paphos, Cyprus"
     fill_in "Description", with: "Beautiful house on the beach"
@@ -38,6 +38,7 @@ RSpec.describe "properties list Feature (Example)", type: :feature do
     click_button "Add Property"
 
     click_link "Add Property"
+    
     fill_in "Name", with: "Villa Rainbow 2"
     fill_in "Address", with: "Limassol, Cyprus"
     fill_in "Description", with: "Beautiful house in the woods"
@@ -54,9 +55,9 @@ RSpec.describe "properties list Feature (Example)", type: :feature do
   end
 
   it "adds properties and removes one" do
-
     visit "/properties"
     click_link "Add Property"
+    
     fill_in "Name", with: "Villa Rainbow"
     fill_in "Address", with: "Paphos, Cyprus"
     fill_in "Description", with: "Beautiful house on the beach"
@@ -64,6 +65,7 @@ RSpec.describe "properties list Feature (Example)", type: :feature do
     click_button "Add Property"
 
     click_link "Add Property"
+    
     fill_in "Name", with: "Villa Rainbow 2"
     fill_in "Address", with: "Limassol, Cyprus"
     fill_in "Description", with: "Beautiful house in the woods"
@@ -71,6 +73,7 @@ RSpec.describe "properties list Feature (Example)", type: :feature do
     click_button "Add Property"
 
     click_link "Add Property"
+    
     fill_in "Name", with: "Villa Rainbow 3"
     fill_in "Address", with: "London, england"
     fill_in "Description", with: "shite house in the sea"
@@ -140,7 +143,5 @@ RSpec.describe "properties list Feature (Example)", type: :feature do
     expect(page).to have_content "London, england"
     expect(page).to have_content "shite house in the sea"
     expect(page).to have_content 120
->>>>>>> Stashed changes
   end
-
 end

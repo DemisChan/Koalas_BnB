@@ -17,10 +17,7 @@ RSpec.describe Property do
 
   it "constructs with an ID" do
     property = Property.new(
-<<<<<<< Updated upstream
-      3
-=======
->>>>>>> Stashed changes
+      3,
       "Rainbow Lodge",
       "6 Rue du Gue, Rueil-Malmaison, France",
       60,

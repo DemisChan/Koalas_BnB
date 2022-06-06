@@ -1,3 +1,5 @@
+require "property"
+
 class PropertyList
   def initialize(database)
     @database = database
