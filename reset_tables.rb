@@ -37,10 +37,13 @@ def reset_user_table(users_db)
   users_db.run("CREATE TABLE users 
     (id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
-    password TEXT NOT NULL);"
+    password TEXT NOT NULL,
+    email TEXT NOT NULL,
+    number TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL);"
   )
 end
-
 
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
 reset_prop_table(dev_db)
@@ -59,4 +62,3 @@ reset_user_table(dev_db)
 
 test_db = DatabaseConnection.new("localhost", "web_application_test")
 reset_user_table(test_db)
-

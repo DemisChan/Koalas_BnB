@@ -11,7 +11,6 @@ require "user"
 require "user_list"
 
 
-
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
   use Rack::MethodOverride
@@ -64,9 +63,6 @@ class WebApplicationServer < Sinatra::Base
     end
   end
 
-
-
-
   get '/properties' do
     erb :property_index, locals: { properties: property_table.list }
   end
@@ -92,6 +88,13 @@ class WebApplicationServer < Sinatra::Base
       index: properties_index,
       property: property_table.get(properties_index)
     }
+  end
+
+  patch '/properties/:index' do
+    properties_index = params[:index].to_i
+    property_table.update(
+    properties_index, params[:name], params[:address], params[:price], params[:description])
+    redirect '/properties'
   end
 
   patch '/properties/:index' do

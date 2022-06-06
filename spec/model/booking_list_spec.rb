@@ -21,7 +21,7 @@ RSpec.describe BookingList do
     expect(booking_list.list).to eq []
   end
 
-	it "adds bookings and lists them out again" do
+  it "adds bookings and lists them out again" do
     bookings_database = empty_and_return_bookings
     booking_list = BookingList.new(bookings_database)
 
@@ -38,8 +38,6 @@ RSpec.describe BookingList do
     properties = property_list.list
 		
     property_id = properties[0].id
-
-
     booking_list.add(Booking.new(
       "Ana",
 			"2021-09-22",
@@ -55,13 +53,12 @@ RSpec.describe BookingList do
     expect(booking[0].prop_id).to eq property_id
   end
 
-	it "removes booking" do
+  it "removes booking" do
     bookings_database = empty_and_return_bookings
     booking_list = BookingList.new(bookings_database)
 
     properties_database = empty_and_return_properties
     property_list = PropertyList.new(properties_database)
-
 
     rainbow = property_list.add(Property.new(
       "Rainbow Lodge",
@@ -74,7 +71,7 @@ RSpec.describe BookingList do
 		
     property_id = properties[0].id
 		
-		emma = booking_list.add(Booking.new(
+    emma = booking_list.add(Booking.new(
       "Emma",
 			"2021-09-22",
 			"2021-10-13",
@@ -95,7 +92,7 @@ RSpec.describe BookingList do
 			property_id
     ))
       
-		booking_list.remove(ana)
+    booking_list.remove(ana)
 
     booking = booking_list.list
     expect(booking.length).to eq 2

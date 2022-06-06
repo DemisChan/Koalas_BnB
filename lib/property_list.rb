@@ -12,7 +12,8 @@ class PropertyList
   end
 
   def add(property)
-    result = @database.run("INSERT INTO properties (name, address, price, description) VALUES ($1, $2, $3, $4) RETURNING id;",
+    result = @database.run("INSERT INTO properties (name, address, price, description)
+    VALUES ($1, $2, $3, $4) RETURNING id;",
     [property.name, property.address, property.price, property.description])
     return result[0]["id"]
   end
@@ -22,7 +23,8 @@ class PropertyList
   end
 
   def update(index, name, address, price, description)
-    @database.run("UPDATE properties SET name = $2, address = $3, price = $4, description = $5 WHERE id = $1;",
+    @database.run("UPDATE properties SET name = $2, address = $3, price = $4, description = $5
+    WHERE id = $1;",
     [index, name, address, price, description])
   end
 

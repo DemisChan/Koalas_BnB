@@ -1,10 +1,10 @@
 class Property
-  def initialize(id = nil, name, address, price, description)
-    @id = id
+  def initialize(name, address, price, description, id = nil)
     @name = name
     @address = address
     @price = price
     @description = description
+    @id = id
   end
 
   def name
