@@ -7,10 +7,16 @@ require 'sinatra/reloader'
 require "database_connection"
 require "property_list"
 require "property"
+require "user"
+require "user_list"
+
+
 
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
   use Rack::MethodOverride
+  
+  enable :sessions
 
   configure :development do
     # In development mode (which you will be running) this enables the tool
@@ -32,12 +38,34 @@ class WebApplicationServer < Sinatra::Base
     $global[:property_table] ||= PropertyList.new($global[:db])
   end
 
+  def users_table
+    $global[:users_table] ||= UsersTable.new($global[:db])
+  end
+
   # Start your server using `rackup`.
   # It will sit there waiting for requests. It isn't broken!
 
   # YOUR CODE GOES BELOW THIS LINE
 
   # EXAMPLE ROUTES
+
+  get '/registrations/new' do
+    erb(:user_register)
+  end
+
+  post '/registrations' do
+    user = User.new(username: params[:username])
+    user.password = params[:password]
+    if users_table.add(user)
+      session[:user_id] = user.id
+      redirect('/properties')
+    else
+      redirect('/registrations/new')
+    end
+  end
+
+
+
 
   get '/properties' do
     erb :property_index, locals: { properties: property_table.list }
