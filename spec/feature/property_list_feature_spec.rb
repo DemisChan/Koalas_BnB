@@ -7,7 +7,6 @@ RSpec.describe "Properties Feature (Example)", type: :feature do
 
   it "starts with an empty list of properties" do
     visit "/properties"
-    expect(page).to have_content "There are no properties."
     expect(page).to have_content "There is no properties in your area"
   end
 

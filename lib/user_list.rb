@@ -34,10 +34,7 @@ class UserList
     result = @database.run("SELECT * FROM users WHERE id = $1;", [index])
     return row_to_object(result[0])
   end
-  def update(index, username, password)
-    @database.run("UPDATE users SET username = $2, password = $3 WHERE id = $1;",
-    [index, username, password])
-  end
+
 
 	def get(index)
 		result = @database.run("SELECT * FROM users WHERE id = $1;", [index])
@@ -48,13 +45,13 @@ class UserList
 
   def row_to_object(row)
     return User.new(
-      row["id"],
       row["username"],
       row["password"],
       row["email"],
       row["number"],
       row["first_name"],
-      row["last_name"]
+      row["last_name"],
+      row["id"]
     )
   end
 end
