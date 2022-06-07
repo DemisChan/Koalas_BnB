@@ -26,6 +26,7 @@ RSpec.describe PropertyList do
     ))
 
     property = property_list.list
+    p property[0]
     expect(property.length).to eq 1
     expect(property[0].name).to eq "Rainbow Lodge"
     expect(property[0].address).to eq "6 Rue du Gue, Rueil-Malmaison, France"
