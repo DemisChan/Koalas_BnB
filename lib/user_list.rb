@@ -30,31 +30,28 @@ class UserList
     [index, username, password, email, number, first_name, last_name])
   end
 
-  def get(index)
-    result = @database.run("SELECT * FROM users WHERE id = $1;", [index])
-    return row_to_object(result[0])
-  end
-  def update(index, username, password)
-    @database.run("UPDATE users SET username = $2, password = $3 WHERE id = $1;",
-    [index, username, password])
-  end
-
 	def get(index)
 		result = @database.run("SELECT * FROM users WHERE id = $1;", [index])
 		return row_to_object(result[0])
 	end
 
+  def find_by(email, password) 
+    result = @database.run("SELECT * FROM users WHERE email = $1 AND password = $2;", [email, password])
+    return nil if result.to_a.empty?
+    return row_to_object(result[0])
+  end
+
   private
 
   def row_to_object(row)
     return User.new(
-      row["id"],
       row["username"],
       row["password"],
       row["email"],
       row["number"],
       row["first_name"],
-      row["last_name"]
+      row["last_name"],
+      row["id"]
     )
   end
 end

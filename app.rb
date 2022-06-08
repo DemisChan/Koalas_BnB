@@ -38,7 +38,7 @@ class WebApplicationServer < Sinatra::Base
   end
 
   def users_table
-    $global[:users_table] ||= UsersTable.new($global[:db])
+    $global[:users_table] ||= UserList.new($global[:db])
   end
 
   # Start your server using `rackup`.
@@ -48,19 +48,45 @@ class WebApplicationServer < Sinatra::Base
 
   # EXAMPLE ROUTES
 
-  get '/registrations/new' do
-    erb(:user_register)
+  get '/users/new' do
+    erb :user_register, locals: { users: session[:user_id] }
   end
 
-  post '/registrations' do
-    user = User.new(username: params[:username])
-    user.password = params[:password]
-    if users_table.add(user)
+  post '/users' do
+    user = User.new(
+      params[:username], 
+      params[:password], 
+      params[:email], 
+      params[:number], 
+      params[:first_name], 
+      params[:last_name])
+
+      session[:user_id] = users_table.add(user)
+      redirect '/users/profile'
+
+  end
+
+  get '/users/profile' do
+    user = users_table.get(session[:user_id])
+    erb :'profile', locals: {user: user}
+  end
+
+  get '/users/login' do
+    erb :'login'
+  end
+
+  post '/users/login' do
+    user = users_table.find_by(params[:email], params[:password])
+    if user
       session[:user_id] = user.id
-      redirect('/properties')
-    else
-      redirect('/registrations/new')
+      redirect '/properties'
     end
+    redirect '/users/login'
+  end
+
+  get '/users/logout' do
+    session.clear
+    redirect '/properties'
   end
 
   get '/properties' do

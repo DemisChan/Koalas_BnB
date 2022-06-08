@@ -1,0 +1,20 @@
+<h1> Profile </h1>
+<section>
+<p> Username: </p>
+<%= user.username %>
+<br>
+<p> First name: </p>
+<%= user.first_name %>
+<br>
+<p> Last name: </p>
+<%= user.last_name %>
+<br>              
+<br>
+<p> Number: </p>
+<%= user.number %>
+<br>
+<p> Email: </p>
+<%= user.email %>
+<br>
+</section>
+<a class="btn" href="/users/profile/<%= user.id %>/edit">Edit</a>

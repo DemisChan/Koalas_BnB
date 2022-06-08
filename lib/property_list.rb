@@ -37,11 +37,11 @@ class PropertyList
 
   def row_to_object(row)
     return Property.new(
-      row["id"],
       row["name"],
       row["address"],
       row["price"],
-      row["description"]
+      row["description"],
+      row["id"]
     )
   end
 end

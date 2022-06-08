@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Web Application</title>
+    <title>Makers BNB</title>
+    <base href="/">
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
   </head>
   <body>
+    <header>
+      <div class="flex-v">
+        <a href="/properties" class="site-name">View all properties</a>
+        <% if session.key?(:user_id) %>
+          <div class="menu signed-in">
+            <a href="/users/profile">Profile</a>
+            <a href="/users/logout">Log Out</a>
+          </div>
+        <% else %>
+          <div class="menu not-signed-in">
+            <a href="/users/signup">Sign Up</a>
+            <a href="/users/login">Log In</a>
+          </div>
+        <% end %>
+      </div>
+
+    </header>
     <div class="container">
       <%= yield %>
     </div>
   </body>
 </html>
+                                            
